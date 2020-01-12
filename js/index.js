@@ -98,6 +98,8 @@ const loadMovieClass = (event) => {
       return item.genres.includes('同性');
     } else if ('fantasy' === event.target.className) {
       return item.genres.includes('奇幻');
+    } else if ('scientific' === event.target.className) {
+      return item.genres.includes('科幻');
     }
   });
 
@@ -147,6 +149,9 @@ $('body').click(event => {
     loadMovieClass(event);
   }
   if (classList.contains('fantasy')) {
+    loadMovieClass(event);
+  }
+  if (classList.contains('scientific')) {
     loadMovieClass(event);
   }
 });
