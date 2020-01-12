@@ -70,6 +70,7 @@
   border-radius: 5px;
   font-size: 20px;
   text-align: center;
+  cursor: pointer;
 }
 
 a {
@@ -84,14 +85,15 @@ a:hover {
 .movie-show-lists {
   position: relative;
   display: flex;
+  flex-wrap: wrap;
   margin: 14px 0;
-  height: 800px;
+  height: 100%;
+  width: 100%;
   background-color: #f5f5f5;
 }
 
 .movie-card {
   width: 18rem;
-  height: 25rem;
 }
 
 .search-single-movie {
