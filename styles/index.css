@@ -71,15 +71,7 @@
   font-size: 20px;
   text-align: center;
   cursor: pointer;
-}
-
-a {
   color: #2c71c0;
-}
-
-a:hover {
-  text-decoration: none;
-  color: rgb(233, 125, 197);
 }
 
 .movie-show-lists {
@@ -105,6 +97,11 @@ a:hover {
   width: 290px;
 }
 
+.empty-result {
+  font-size: larger;
+  color: #2c71c0;
+}
+
 .footer-nav {
   position: absolute;
   bottom: 10px;
@@ -114,3 +111,4 @@ a:hover {
 .pagination {
   margin: 0;
 }
+

@@ -94,6 +94,10 @@ const loadMovieClass = (event) => {
       return item.genres.includes('爱情');
     } else if ('cartoon' === event.target.className) {
       return item.genres.includes('动画');
+    } else if ('gay' === event.target.className) {
+      return item.genres.includes('同性');
+    } else if ('fantasy' === event.target.className) {
+      return item.genres.includes('奇幻');
     }
   });
 
@@ -106,18 +110,16 @@ const loadMovieClass = (event) => {
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>
         <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.casts.map(
-          item => item.name
-        )}</p>
-        <p class="card-text">演员: ${item.casts.map(
-          item => item.name
-        )}</p>
+        <p class="card-text">导演: ${item.casts.map(item => item.name)}</p>
+        <p class="card-text">演员: ${item.casts.map(item => item.name)}</p>
         <p class="card-text">类别: ${item.genres}</p>
         <a href=${item.alt} target="_blank" class="btn btn-primary">查看详情</a>
         </div>
       </div>`
     });
     $('.movie-show-lists').html(list);
+  } else {
+    $('.movie-show-lists').html(`<span class="empty-result">没有该类型的电影</span>`);
   }
 }
 
@@ -139,6 +141,12 @@ $('body').click(event => {
     loadMovieClass(event);
   }
   if (classList.contains('cartoon')) {
+    loadMovieClass(event);
+  }
+  if (classList.contains('gay')) {
+    loadMovieClass(event);
+  }
+  if (classList.contains('fantasy')) {
     loadMovieClass(event);
   }
 });
