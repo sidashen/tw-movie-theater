@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="container">
+
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <a class="navbar-brand" href="#">思沃影院</a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,6 +45,7 @@
         </form>
       </div>
     </nav>
+
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
       <ol class="carousel-indicators">
         <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -70,13 +72,14 @@
         <span class="sr-only">Next</span>
       </a>
     </div>
+
     <div class="movie-groups">
       <div class="group-head">电影分类</div>
         <ul class="group-name">
-          <li><a href="#">剧情</a></li>
-          <li><a href="#">动作</a></li>
-          <li><a href="#">爱情</a></li>
-          <li><a href="#">动画</a></li>
+          <li class="story">剧情</li>
+          <li class="action">动作</li>
+          <li class="love">爱情</li>
+          <li class="cartoon">动画</li>
         </ul>
         <ul class="group-name">
           <li><a href="#">同性</a></li>
@@ -85,27 +88,18 @@
           <li><a href="#">战争</a></li>
         </ul>
     </div>
+
     <div class="movie-show-area">
-      <div class="movie-show-lists">
-        
-      </div>
-      <nav aria-label="Page navigation example" class="footer-nav">
-        <ul class="pagination">
-          <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-          <li class="page-item"><a class="page-link" href="#">1</a></li>
-          <li class="page-item"><a class="page-link" href="#">2</a></li>
-          <li class="page-item"><a class="page-link" href="#">3</a></li>
-          <li class="page-item"><a class="page-link" href="#">Next</a></li>
-        </ul>
-      </nav>
+      <div class="movie-show-lists"></div>
+      <div class="search-single-movie"></div>
     </div>
     
   </div>
 
-
   <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js" integrity="sha384-smHYKdLADwkXOn1EmN1qk/HfnUcbVRZyYmZ4qpPea6sjB/pTJ0euyQp0Mk8ck+5T" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="js/ajax.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </body>
 
