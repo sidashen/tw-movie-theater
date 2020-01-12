@@ -86,10 +86,14 @@ const searchMovie = (res) => {
 
 const loadMovieClass = (event) => {
   const movieLists = movieData.subjects.filter(item => {
-    if (event.target.className === 'story') {
+    if ('story' === event.target.className) {
       return item.genres.includes('剧情');
-    } else if (event.target.className === 'action') {
+    } else if ('action' === event.target.className) {
       return item.genres.includes('动作');
+    } else if ('love' === event.target.className) {
+      return item.genres.includes('爱情');
+    } else if ('cartoon' === event.target.className) {
+      return item.genres.includes('动画');
     }
   });
 
@@ -132,6 +136,9 @@ $('body').click(event => {
     loadMovieClass(event);
   }
   if (classList.contains('love')) {
+    loadMovieClass(event);
+  }
+  if (classList.contains('cartoon')) {
     loadMovieClass(event);
   }
 });
