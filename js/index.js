@@ -6,15 +6,15 @@ const getResource = () => {
     'get', 
     {}, 
     function (res) {
-      loadAllMovie(res);
       movieData = res;
+      loadAllMovie();
     }
   );
 }
 
-const loadAllMovie = (res) => {
+const loadAllMovie = () => {
   let list = '';
-  res.subjects.forEach(item => {
+  movieData.subjects.forEach(item => {
     if (item)
       list += `<div class="movie-card">
         <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
@@ -29,7 +29,7 @@ const loadAllMovie = (res) => {
           item => item.name
         )}</p>
         <p class="card-text">类别: ${item.genres}</p>
-        <a href=${item.alt} target="_blank" class="btn btn-primary">查看详情</a>
+        <a href=${item.alt} target="_blank"><button class="movie-description">查看详情</button></a>
         </div>
       </div>`
       });
@@ -100,6 +100,8 @@ const loadMovieClass = (event) => {
       return item.genres.includes('奇幻');
     } else if ('scientific' === event.target.className) {
       return item.genres.includes('科幻');
+    } else if ('war' === event.target.className) {
+      return item.genres.includes('战争');
     }
   });
 
@@ -124,8 +126,6 @@ const loadMovieClass = (event) => {
     $('.movie-show-lists').html(`<span class="empty-result">没有该类型的电影</span>`);
   }
 }
-
-getResource();
 
 $('body').click(event => {
   let {classList} = event.target;
@@ -154,6 +154,12 @@ $('body').click(event => {
   if (classList.contains('scientific')) {
     loadMovieClass(event);
   }
+  if (classList.contains('war')) {
+    loadMovieClass(event);
+  }
+  if (classList.contains('group-head')) {
+    loadAllMovie();
+  }
 });
 
 $('.form-control').keydown((e) => {
@@ -161,3 +167,5 @@ $('.form-control').keydown((e) => {
     handleSearch();
   }
 });
+
+getResource();

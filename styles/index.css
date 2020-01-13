@@ -43,6 +43,10 @@
   height: 300px;
 }
 
+.group-head {
+  cursor: pointer;
+}
+
 .movie-groups, .movie-show-area {
   position: relative;
   top: 71px;
@@ -76,16 +80,21 @@
 
 .movie-show-lists {
   position: relative;
-  display: flex;
-  flex-wrap: wrap;
   margin: 14px 0;
   height: 100%;
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
   background-color: #f5f5f5;
 }
 
 .movie-card {
   width: 18rem;
+}
+
+.card-img-top {
+  height: 400px;
 }
 
 .search-single-movie {
