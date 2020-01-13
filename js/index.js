@@ -2,7 +2,7 @@ let movieData;
 
 const getResource = () => {
   myAjax(
-    'https://api.douban.com/v2/movie/in_theaters?apikey=0df993c66c0c636e29ecbb5344252a4a', 
+    'https://api.douban.com/v2/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a', 
     'get', 
     {}, 
     function (res) {
@@ -22,14 +22,14 @@ const loadAllMovie = () => {
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>
         <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.casts.map(
+        <p class="card-text">导演: ${item.directors.map(
           item => item.name
         )}</p>
         <p class="card-text">演员: ${item.casts.map(
           item => item.name
         )}</p>
         <p class="card-text">类别: ${item.genres}</p>
-        <a href=${item.alt} target="_blank"><button class="movie-description">查看详情</button></a>
+        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
         </div>
       </div>`
       });
@@ -50,34 +50,34 @@ const handleSearch = () => {
 const searchMovie = (res) => {
   const keyword = $('input')[0].value;
   const singleMovie = res.subjects.filter(item => {
-    return item.title === keyword;
+    return item.title.includes(keyword);
   });
 
   if (singleMovie.length) {
     let list = '';
     singleMovie.forEach(item => {
-      list = `<div class="movie-card">
+      list += `<div class="movie-card">
       <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
       <div class="card-body">
       <h5 class="card-title">${item.title}</h5>
       <p class="card-text">年份: ${item.year}</p>
       <p class="card-text">评分: ${item.rating.average}</p>
-      <p class="card-text">导演: ${item.casts.map(
+      <p class="card-text">导演: ${item.directors.map(
         item => item.name
       )}</p>
       <p class="card-text">演员: ${item.casts.map(
         item => item.name
       )}</p>
       <p class="card-text">类别: ${item.genres}</p>
-      <a href=${item.alt} target="_blank" class="btn btn-primary">查看详情</a>
+      <a href="./pages/details.html?id=${item.id}" target="_blank" class="btn btn-primary">查看详情</a>
       </div>
-      </div>`
+    </div>`
     });
-    $('.search-single-movie').css('display','block');
+    $('.search-movie-lists').css('display','flex');
     $('.carousel').css('display','none');
     $('.movie-groups').css('display','none');
     $('.movie-show-lists').css('display','none');
-    $('.search-single-movie').html(list);
+    $('.search-movie-lists').html(list);
   } else {
     alert('没有搜到你想搜的电影');
   }
@@ -114,10 +114,10 @@ const loadMovieClass = (event) => {
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>
         <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.casts.map(item => item.name)}</p>
+        <p class="card-text">导演: ${item.directors.map(item => item.name)}</p>
         <p class="card-text">演员: ${item.casts.map(item => item.name)}</p>
         <p class="card-text">类别: ${item.genres}</p>
-        <a href=${item.alt} target="_blank" class="btn btn-primary">查看详情</a>
+        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
         </div>
       </div>`
     });
@@ -131,7 +131,7 @@ $('body').click(event => {
   let {classList} = event.target;
 
   if (classList.contains('btn')) {
-    handleSearch(res);
+    handleSearch();
   }
   if (classList.contains('story')) {
     loadMovieClass(event);
@@ -162,10 +162,14 @@ $('body').click(event => {
   }
 });
 
-$('.form-control').keydown((e) => {
-  if (e.which === 13) {
-    handleSearch();
-  }
-});
+
+
+// $('input').keydown((e) => {
+//   if (e.which === 13) {
+//     if ($('input')[0].value != '') {
+//       handleSearch();
+//     }
+//   }
+// });
 
 getResource();
