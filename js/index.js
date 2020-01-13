@@ -1,4 +1,5 @@
 let movieData;
+let listContent;
 
 const getResource = () => {
   myAjax(
@@ -13,27 +14,9 @@ const getResource = () => {
 }
 
 const loadAllMovie = () => {
-  let list = '';
-  movieData.subjects.forEach(item => {
-    if (item)
-      list += `<div class="movie-card">
-        <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
-        <div class="card-body">
-        <h5 class="card-title">${item.title}</h5>
-        <p class="card-text">年份: ${item.year}</p>
-        <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.directors.map(
-          item => item.name
-        )}</p>
-        <p class="card-text">演员: ${item.casts.map(
-          item => item.name
-        )}</p>
-        <p class="card-text">类别: ${item.genres}</p>
-        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
-        </div>
-      </div>`
-      });
-    $('.movie-show-lists').html(list);
+  listContent = movieData.subjects;
+  let list = movieCardShow(listContent);
+  $('.movie-show-lists').html(list);
 }
 
 const handleSearch = () => {
@@ -54,25 +37,9 @@ const searchMovie = (res) => {
   });
 
   if (singleMovie.length) {
-    let list = '';
-    singleMovie.forEach(item => {
-      list += `<div class="movie-card">
-      <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
-      <div class="card-body">
-      <h5 class="card-title">${item.title}</h5>
-      <p class="card-text">年份: ${item.year}</p>
-      <p class="card-text">评分: ${item.rating.average}</p>
-      <p class="card-text">导演: ${item.directors.map(
-        item => item.name
-      )}</p>
-      <p class="card-text">演员: ${item.casts.map(
-        item => item.name
-      )}</p>
-      <p class="card-text">类别: ${item.genres}</p>
-      <a href="./pages/details.html?id=${item.id}" target="_blank" class="btn btn-primary">查看详情</a>
-      </div>
-    </div>`
-    });
+    listContent = singleMovie;
+    let list =movieCardShow(listContent);
+
     $('.search-movie-lists').css('display','flex');
     $('.carousel').css('display','none');
     $('.movie-groups').css('display','none');
@@ -127,6 +94,30 @@ const loadMovieClass = (event) => {
   }
 }
 
+const movieCardShow = (listContent) => {
+  let list = '';
+  listContent.forEach(item => {
+    if (item)
+      list += `<div class="movie-card">
+        <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
+        <div class="card-body">
+        <h5 class="card-title">${item.title}</h5>
+        <p class="card-text">年份: ${item.year}</p>
+        <p class="card-text">评分: ${item.rating.average}</p>
+        <p class="card-text">导演: ${item.directors.map(
+          item => item.name
+          )}</p>
+        <p class="card-text">演员: ${item.casts.map(
+          item => item.name
+          )}</p>
+        <p class="card-text">类别: ${item.genres}</p>
+        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
+        </div>
+      </div>`;
+  });
+  return list;
+}
+
 $('body').click(event => {
   let {classList} = event.target;
 
@@ -162,14 +153,5 @@ $('body').click(event => {
   }
 });
 
-
-
-// $('input').keydown((e) => {
-//   if (e.which === 13) {
-//     if ($('input')[0].value != '') {
-//       handleSearch();
-//     }
-//   }
-// });
-
 getResource();
+
