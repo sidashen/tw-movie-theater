@@ -79,17 +79,21 @@
   margin-top: 20px;
 }
 
+.profile-photo {
+    display: inline-block;
+}
+
 .author-info {
   display: inline-block;
   font-size: 18px;
   color: #2c71c0;
 }
 
-.author-info > p {
+.author-info, .comment {
   margin-bottom: 5px;
 }
 
-img {
+.profile-photo > img {
   width: 1.9rem;
 }
 
@@ -106,13 +110,41 @@ h5 {
   color: white;
 }
 
-.similar-movie-lists {
+.similar-movie-lists-area {
     position: relative;
-    top: 70px;
-    display: flex;
-    flex-wrap: wrap;
+    top: 91px;
 }
 
-.similar-movie-lists > img {
+.show-movie-lists {
+    margin-top: 39px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+}
+
+.img-card {
     display: inline-block;
+    width: 10rem;
+    height: 15rem;
+}
+
+.movie-card-info {
+    position: relative;
+}
+
+.movie-title {
+    margin: 10px 0;
+    font-size: 18px;
+    text-align: center;
+}
+
+.rating {
+    position: relative;
+    left: 25%;
+    padding: 5px;
+    width: fit-content;
+    background-color: #2c71c0;
+    color: white;
+    border-radius: 5px;
+    font-size: 14px;
 }

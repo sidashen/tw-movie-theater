@@ -65,7 +65,7 @@ const loadSpecificMovie = (res) => {
 const loadComments = (res) => {
   let commentsList = '';
     res.comments.forEach(item => {
-      commentsList += `<div class="profile-photo"></div><img src=${item.author.avatar} alt="profile photo"></div>
+      commentsList += `<div class="profile-photo"><img src=${item.author.avatar} alt="profile photo"></div>
         <p class="author-info">${item.author.name}</p>
         <p class="comment">${item.content}</p>`
     });
@@ -75,14 +75,19 @@ const loadComments = (res) => {
 const loadSimilarMovie = (res, movieData) => {
   const similarMovieLists = res.subjects.filter(item => {
     return  movieData.genres.some(type => item.genres.includes(type));
-  });
+  }).slice(0, 12);
 
   let list = '';
     similarMovieLists.forEach(item => {
-      list += `<img class="card-img-top" src=${item.images.small} alt="Card image cap">
-        <p class="card-text">${item.title}</p>`
+      list += `<div class="movie-card-info">
+        <a href="../pages/details.html?id=${item.id}" target="_blank">
+        <img class="img-card" src=${item.images.small} alt="Card image cap">
+        </a>
+        <p class="movie-title">${item.title}</p>
+        <p class="rating">评分：${item.rating.average}</p>
+        </div>`
     });
-  $('.similar-movie-lists').html(list);
+  $('.show-movie-lists').html(list);
 }
 
 getSpecificMovieResource();
