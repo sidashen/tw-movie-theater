@@ -27,7 +27,7 @@ const searchMovie = () => {
 
   if (singleMovie.length) {
     listContent = singleMovie;
-    let list =movieCardShow(listContent);
+    let list = movieCardShow(listContent);
 
     $('.search-movie-lists').css('display','flex');
     $('.carousel').css('display','none');
@@ -65,7 +65,9 @@ const loadMovieClass = (event) => {
     let list = '';
     movieLists.forEach(item => {
       list += `<div class="movie-card">
+        <a href="./pages/details.html?id=${item.id}" target="_blank">
         <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
+        </a>
         <div class="card-body">
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>
@@ -88,7 +90,9 @@ const movieCardShow = (listContent) => {
   listContent.forEach(item => {
     if (item)
       list += `<div class="movie-card">
+        <a href="./pages/details.html?id=${item.id}" target="_blank">
         <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
+        </a>
         <div class="card-body">
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>

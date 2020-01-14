@@ -18,7 +18,8 @@ const getComments = (res) => {
   let commentsList = '';
   res.comments.forEach(item => {
     commentsList += `<div class="profile-photo"></div><img src=${item.author.avatar} alt="profile photo"></div>
-    <p class="author-info">用户名：${item.author.signature}</p>`
+    <p class="author-info">${item.author.name}</p>
+    <p class="comment">${item.content}</p>`
   });
   $('.movie-comments').html(commentsList);
 };
@@ -55,7 +56,7 @@ const loadSpecificMovie = (res) => {
     </div>
     <div class="summary-head">
        <h4>剧情简介</h4>
-        <p class="card-text">${res.summary}</p>
+        <p class="summary">${res.summary}</p>
      </div>`;
   $('.movie-details').html(list);
 };

@@ -1,6 +1,12 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .navbar {
   position: fixed;
   width: 66.1%;
+  z-index: 3;
 }
 
 .form-inline {
@@ -66,9 +72,36 @@
 
 .comments-area {
   position: relative;
-  top: 80px;
+  top: 72px;
+}
+
+.movie-comments {
+  margin-top: 20px;
 }
 
 .author-info {
   display: inline-block;
+  font-size: 18px;
+  color: #2c71c0;
+}
+
+.author-info > p {
+  margin-bottom: 5px;
+}
+
+img {
+  width: 1.9rem;
+}
+
+.comment, .summary {
+  text-indent: 32px;
+}
+
+h4 {
+  padding: 5px;
+  height: fit-content;
+  width: fit-content;
+  border-radius: 5px;
+  background-color: #777777;
+  color: white;
 }
