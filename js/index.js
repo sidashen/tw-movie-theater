@@ -6,7 +6,7 @@ const getResource = () => {
     'https://api.douban.com/v2/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a', 
     'get', 
     {}, 
-    function (res) {
+    (res) => {
       movieData = res;
       loadAllMovie();
     }
@@ -14,8 +14,7 @@ const getResource = () => {
 }
 
 const loadAllMovie = () => {
-  listContent = movieData.subjects;
-  let list = movieCardShow(listContent);
+  let list = movieCardShow(movieData.subjects);
   $('.movie-show-lists').html(list);
 }
 
@@ -26,8 +25,7 @@ const searchMovie = () => {
   });
 
   if (singleMovie.length) {
-    listContent = singleMovie;
-    let list = movieCardShow(listContent);
+    let list = movieCardShow(singleMovie);
 
     $('.search-movie-lists').css('display','flex');
     $('.carousel').css('display','none');
@@ -72,8 +70,12 @@ const loadMovieClass = (event) => {
         <h5 class="card-title">${item.title}</h5>
         <p class="card-text">年份: ${item.year}</p>
         <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.directors.map(item => item.name)}</p>
-        <p class="card-text">演员: ${item.casts.map(item => item.name)}</p>
+        <p class="card-text">导演: ${item.directors.map(
+          item => item.name
+      )}</p>
+        <p class="card-text">演员: ${item.casts.map(
+          item => item.name
+      )}</p>
         <p class="card-text">类别: ${item.genres}</p>
         <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
         </div>

@@ -7,44 +7,33 @@ const getSpecificMovieResource = () => {
     `https://api.douban.com/v2/movie/subject/${id}?apikey=0df993c66c0c636e29ecbb5344252a4a`,
     'get',
     {},
-    function (res) {
+    (res) => {
       movieData = res;
       loadSpecificMovie(res);
+      getCommentsResource();
+      getResource(movieData);
     }
   );
 };
 
-const getComments = (res) => {
-  let commentsList = '';
-  res.comments.forEach(item => {
-    commentsList += `<div class="profile-photo"></div><img src=${item.author.avatar} alt="profile photo"></div>
-    <p class="author-info">${item.author.name}</p>
-    <p class="comment">${item.content}</p>`
-  });
-  $('.movie-comments').html(commentsList);
-};
-
 const getCommentsResource = () => {
-  if (movieData != []) {
     myAjax(
         `https://api.douban.com/v2/movie/subject/${id}/comments?start=1&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a`,
         'get',
         {},
         function (res) {
-          getComments(res);
+          loadComments(res);
         }
     );
-  }
 };
 
-const getResource = () => {
+const getResource = (movieData) => {
     myAjax(
-        'https://api.douban.com/v2/movie/top250?start=0&count=10&apikey=0df993c66c0c636e29ecbb5344252a4a',
+        'https://api.douban.com/v2/movie/top250?start=0&count=50&apikey=0df993c66c0c636e29ecbb5344252a4a',
         'get',
         {},
-        function (res) {
-            movieData = res;
-            loadAllMovie();
+         (res) => {
+            loadSimilarMovie(res, movieData);
         }
     );
 };
@@ -67,12 +56,33 @@ const loadSpecificMovie = (res) => {
     <a href="${res.alt}" target="_blank"><button class="movie-description">在线观看</button></a>
     </div>
     <div class="summary-head">
-       <h4>剧情简介</h4>
-        <p class="summary">${res.summary}</p>
+       <h5>剧情简介</h5>
+       <p class="summary">${res.summary}</p>
      </div>`;
   $('.movie-details').html(list);
 };
 
+const loadComments = (res) => {
+  let commentsList = '';
+    res.comments.forEach(item => {
+      commentsList += `<div class="profile-photo"></div><img src=${item.author.avatar} alt="profile photo"></div>
+        <p class="author-info">${item.author.name}</p>
+        <p class="comment">${item.content}</p>`
+    });
+  $('.movie-comments').html(commentsList);
+};
+
+const loadSimilarMovie = (res, movieData) => {
+  const similarMovieLists = res.subjects.filter(item => {
+    return  movieData.genres.some(type => item.genres.includes(type));
+  });
+
+  let list = '';
+    similarMovieLists.forEach(item => {
+      list += `<img class="card-img-top" src=${item.images.small} alt="Card image cap">
+        <p class="card-text">${item.title}</p>`
+    });
+  $('.similar-movie-lists').html(list);
+}
+
 getSpecificMovieResource();
-getCommentsResource();
-getResource();
