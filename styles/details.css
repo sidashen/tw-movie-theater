@@ -58,3 +58,17 @@
 .card-body {
   display: inline-block;
 }
+
+.summary-head {
+  position: relative;
+  top: -45px;
+}
+
+.comments-area {
+  position: relative;
+  top: 80px;
+}
+
+.author-info {
+  display: inline-block;
+}

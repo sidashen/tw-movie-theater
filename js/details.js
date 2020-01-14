@@ -1,16 +1,40 @@
 const url = location.search;
 const id = url.replace(/[^0-9]/ig,"");
+let movieData;
 
-const getSpecificResource = () => {
+const getSpecificMovieResource = () => {
   myAjax(
-    `https://api.douban.com/v2/movie/subject/${id}?apikey=0df993c66c0c636e29ecbb5344252a4a`, 
-    'get', 
-    {}, 
+    `https://api.douban.com/v2/movie/subject/${id}?apikey=0df993c66c0c636e29ecbb5344252a4a`,
+    'get',
+    {},
     function (res) {
+      movieData = res;
       loadSpecificMovie(res);
     }
   );
-}
+};
+
+const getComments = (res) => {
+  let commentsList = '';
+  res.comments.forEach(item => {
+    commentsList += `<div class="profile-photo"></div><img src=${item.author.avatar} alt="profile photo"></div>
+    <p class="author-info">用户名：${item.author.signature}</p>`
+  });
+  $('.movie-comments').html(commentsList);
+};
+
+const getCommentsResource = () => {
+  if (movieData != []) {
+    myAjax(
+        `https://api.douban.com/v2/movie/subject/${id}/comments?start=1&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a`,
+        'get',
+        {},
+        function (res) {
+          getComments(res);
+        }
+    );
+  }
+};
 
 const loadSpecificMovie = (res) => {
   const list = `<h2 class="card-title">${res.title} (${res.year})</h2>
@@ -29,9 +53,12 @@ const loadSpecificMovie = (res) => {
     <p class="card-text">评分: ${res.rating.average}</p>
     <a href="${res.alt}" target="_blank"><button class="movie-description">在线观看</button></a>
     </div>
-    <h4>剧情简介</h4>
-    <p class="card-text">${res.summary}</p>`;
+    <div class="summary-head">
+       <h4>剧情简介</h4>
+        <p class="card-text">${res.summary}</p>
+     </div>`;
   $('.movie-details').html(list);
 };
 
-getSpecificResource();
+getSpecificMovieResource();
+getCommentsResource();
