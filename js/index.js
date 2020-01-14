@@ -19,20 +19,9 @@ const loadAllMovie = () => {
   $('.movie-show-lists').html(list);
 }
 
-const handleSearch = () => {
-  myAjax(
-    'https://api.douban.com/v2/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a', 
-    'get', 
-    {}, 
-    function (res) {
-      searchMovie(res);
-    }
-  );
-}
-
-const searchMovie = (res) => {
+const searchMovie = () => {
   const keyword = $('input')[0].value;
-  const singleMovie = res.subjects.filter(item => {
+  const singleMovie = movieData.subjects.filter(item => {
     return item.title.includes(keyword);
   });
 
@@ -122,7 +111,7 @@ $('body').click(event => {
   let {classList} = event.target;
 
   if (classList.contains('btn')) {
-    handleSearch();
+    searchMovie();
   }
   if (classList.contains('story')) {
     loadMovieClass(event);

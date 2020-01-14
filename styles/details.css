@@ -2,3 +2,59 @@
   position: fixed;
   width: 66.1%;
 }
+
+.form-inline {
+  position: absolute;
+  right: 20px;
+}
+
+.btn-outline-success {
+  color: #2c71c0;
+  border-color: #2c71c0;
+}
+
+.btn-outline-success:hover {
+  color: #fff;
+  background-color: #2c71c0;
+  border-color: #2c71c0;
+}
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active, .show>.btn-outline-success.dropdown-toggle {
+  color: #fff;
+  background-color: #2c71c0;
+  border-color: #2c71c0;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus, .show>.btn-outline-success.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+.navbar-brand{
+  font-size: 30px;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #2c71c0 !important;
+}
+
+.carousel {
+  top: 71px;
+}
+
+.movie-details {
+  position: relative;
+  top: 100px;
+}
+
+.card-img-top {
+  position: relative;
+  top: -83px;
+  width: 18rem;
+  height: 27rem;
+}
+
+.card-body {
+  display: inline-block;
+}

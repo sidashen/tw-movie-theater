@@ -1,5 +1,5 @@
-const str = location.search;
-const id = str.replace(/[^0-9]/ig,"");
+const url = location.search;
+const id = url.replace(/[^0-9]/ig,"");
 
 const getSpecificResource = () => {
   myAjax(

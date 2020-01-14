@@ -4,6 +4,11 @@
   z-index: 3;
 }
 
+.form-inline {
+  position: absolute;
+  right: 20px;
+}
+
 .btn-outline-success {
   color: #2c71c0;
   border-color: #2c71c0;
@@ -114,15 +119,5 @@
 .empty-result {
   font-size: larger;
   color: #2c71c0;
-}
-
-.footer-nav {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-}
-
-.pagination {
-  margin: 0;
 }
 
