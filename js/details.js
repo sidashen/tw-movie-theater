@@ -37,6 +37,18 @@ const getCommentsResource = () => {
   }
 };
 
+const getResource = () => {
+    myAjax(
+        'https://api.douban.com/v2/movie/top250?start=0&count=10&apikey=0df993c66c0c636e29ecbb5344252a4a',
+        'get',
+        {},
+        function (res) {
+            movieData = res;
+            loadAllMovie();
+        }
+    );
+};
+
 const loadSpecificMovie = (res) => {
   const list = `<h2 class="card-title">${res.title} (${res.year})</h2>
     <img class="card-img-top" src=${res.images.small} alt="Card image cap">
@@ -63,3 +75,4 @@ const loadSpecificMovie = (res) => {
 
 getSpecificMovieResource();
 getCommentsResource();
+getResource();
