@@ -196,6 +196,12 @@ $('body').click(event => {
   if (classList.contains('group-head')) {
     loadCurrentMovie();
   }
+  if (classList.contains('previous-page')) {
+    previousPage();
+  }
+  if (classList.contains(('next-page'))) {
+    nextPage();
+  }
 });
 
 getResource();

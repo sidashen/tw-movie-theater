@@ -17,25 +17,25 @@ const getSpecificMovieResource = () => {
 };
 
 const getCommentsResource = () => {
-    myAjax(
-        `https://api.douban.com/v2/movie/subject/${id}/comments?start=1&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a`,
-        'get',
-        {},
-        function (res) {
-          loadComments(res);
-        }
-    );
+  myAjax(
+    `https://api.douban.com/v2/movie/subject/${id}/comments?start=1&count=5&apikey=0df993c66c0c636e29ecbb5344252a4a`,
+    'get',
+    {},
+    function (res) {
+      loadComments(res);
+    }
+  );
 };
 
 const getResource = (movieData) => {
-    myAjax(
-        'https://api.douban.com/v2/movie/top250?start=0&count=50&apikey=0df993c66c0c636e29ecbb5344252a4a',
-        'get',
-        {},
-         (res) => {
-            loadSimilarMovie(res, movieData);
-        }
-    );
+  myAjax(
+    'https://api.douban.com/v2/movie/top250?start=0&count=50&apikey=0df993c66c0c636e29ecbb5344252a4a',
+    'get',
+    {},
+    (res) => {
+      loadSimilarMovie(res, movieData);
+    }
+  );
 };
 
 const loadSpecificMovie = (res) => {
