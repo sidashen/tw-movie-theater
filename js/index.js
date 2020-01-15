@@ -6,7 +6,7 @@ let currentMovies;
 
 const getResource = () => {
   myAjax(
-    'https://api.douban.com/v2/movie/top250?start=0&count=10&apikey=0df993c66c0c636e29ecbb5344252a4a',
+    'https://api.douban.com/v2/movie/top250?start=0&count=250&apikey=0df993c66c0c636e29ecbb5344252a4a',
     'get', 
     {},
     (res) => {
