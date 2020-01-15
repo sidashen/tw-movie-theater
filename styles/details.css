@@ -149,8 +149,7 @@ h5 {
 }
 
 .rating {
-  position: relative;
-  left: 25%;
+  margin: 11px auto;
   padding: 5px;
   width: fit-content;
   height: fit-content;
@@ -158,4 +157,26 @@ h5 {
   color: white;
   border-radius: 5px;
   font-size: 14px;
+}
+
+.movie-card {
+  position: relative;
+  top: 30px;
+  margin: 20px;
+  width: 18rem;
+}
+
+.search-movie-lists {
+  position: relative;
+  top: 153px;
+  display: none;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.search-card-body {
+  position: relative;
+  top: -48px;
+  width: 100%;
+  text-align: center;
 }
