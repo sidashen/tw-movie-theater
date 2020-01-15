@@ -102,6 +102,9 @@ const initialPaginationParams = () => {
   if ((singlePageMovies.length % 6) !== 0) {
     totalPage++;
   }
+  $('.current-page').html(Number(current + 1));
+  $('.total-page').html(Number(totalPage));
+
   if (current === 0) {
     previousPageDisabled();
     nextPageActive();
@@ -139,6 +142,7 @@ const nextPage = () => {
   current ++;
   currentMovies = singlePageMovies.slice(current * 6, (current + 1) * 6);
   $('.movie-show-lists').html(movieCardContents(currentMovies));
+  $('.current-page').html(Number(current + 1));
   previousPageActive();
 
   if (current === totalPage - 1) {
@@ -150,6 +154,7 @@ const previousPage = () => {
   current --;
   currentMovies = singlePageMovies.slice(current * 6, (current + 1) * 6);
   $('.movie-show-lists').html(movieCardContents(currentMovies));
+  $('.current-page').html(Number(current + 1));
   nextPageActive();
 
   if (current === 0) {
