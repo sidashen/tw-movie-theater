@@ -1,22 +1,21 @@
 let movieData;
-let listContent;
 
 const getResource = () => {
   myAjax(
-    'https://api.douban.com/v2/movie/top250?apikey=0df993c66c0c636e29ecbb5344252a4a', 
+    'https://api.douban.com/v2/movie/top250?start=0&count=250&apikey=0df993c66c0c636e29ecbb5344252a4a',
     'get', 
-    {}, 
+    {},
     (res) => {
       movieData = res;
-      loadAllMovie();
+      loadCurrentMovie();
     }
   );
-}
+};
 
-const loadAllMovie = () => {
-  let list = movieCardShow(movieData.subjects);
-  $('.movie-show-lists').html(list);
-}
+const loadCurrentMovie = () => {
+  let currentMovies = movieData.subjects.slice(0, 6);
+  $('.movie-show-lists').html(movieCardContents(currentMovies));
+};
 
 const searchMovie = () => {
   const keyword = $('input')[0].value;
@@ -24,19 +23,17 @@ const searchMovie = () => {
     return item.title.includes(keyword);
   });
 
-  if (singleMovie.length) {
-    let list = movieCardShow(singleMovie);
-
+  if (singleMovie.length > 0) {
     $('.search-movie-lists').css('display','flex');
     $('.carousel').css('display','none');
     $('.movie-groups').css('display','none');
     $('.movie-show-lists').css('display','none');
-    $('.search-movie-lists').html(list);
+    $('.search-movie-lists').html(movieCardContents(singleMovie));
   } else {
     alert('没有搜到你想搜的电影');
   }
   $('input')[0].value = '';
-}
+};
 
 const loadMovieClass = (event) => {
   const movieLists = movieData.subjects.filter(item => {
@@ -57,41 +54,17 @@ const loadMovieClass = (event) => {
     } else if ('war' === event.target.className) {
       return item.genres.includes('战争');
     }
-  });
+  }).slice(0, 6);
+  
+  $('.movie-show-lists').html(movieLists.length ?
+    movieCardContents(movieLists) : `<span class="empty-result">没有该类型的电影</span>`
+  );
+};
 
-  if (movieLists.length) {
-    let list = '';
-    movieLists.forEach(item => {
-      list += `<div class="movie-card">
-        <a href="./pages/details.html?id=${item.id}" target="_blank">
-        <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
-        </a>
-        <div class="card-body">
-        <h5 class="card-title">${item.title}</h5>
-        <p class="card-text">年份: ${item.year}</p>
-        <p class="card-text">评分: ${item.rating.average}</p>
-        <p class="card-text">导演: ${item.directors.map(
-          item => item.name
-      )}</p>
-        <p class="card-text">演员: ${item.casts.map(
-          item => item.name
-      )}</p>
-        <p class="card-text">类别: ${item.genres}</p>
-        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
-        </div>
-      </div>`
-    });
-    $('.movie-show-lists').html(list);
-  } else {
-    $('.movie-show-lists').html(`<span class="empty-result">没有该类型的电影</span>`);
-  }
-}
-
-const movieCardShow = (listContent) => {
+function movieCardContents(listContent) {
   let list = '';
   listContent.forEach(item => {
-    if (item)
-      list += `<div class="movie-card">
+    list += `<div class="movie-card">
         <a href="./pages/details.html?id=${item.id}" target="_blank">
         <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
         </a>
@@ -100,11 +73,11 @@ const movieCardShow = (listContent) => {
         <p class="card-text">年份: ${item.year}</p>
         <p class="card-text">评分: ${item.rating.average}</p>
         <p class="card-text">导演: ${item.directors.map(
-          item => item.name
-          )}</p>
+      item => item.name
+    )}</p>
         <p class="card-text">演员: ${item.casts.map(
-          item => item.name
-          )}</p>
+      item => item.name
+    )}</p>
         <p class="card-text">类别: ${item.genres}</p>
         <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
         </div>
@@ -144,9 +117,8 @@ $('body').click(event => {
     loadMovieClass(event);
   }
   if (classList.contains('group-head')) {
-    loadAllMovie();
+    loadCurrentMovie();
   }
 });
 
 getResource();
-

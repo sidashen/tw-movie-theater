@@ -5,6 +5,9 @@ function myAjax(url, type, data, callback) {
   dataType: 'jsonp',
   data: data,
   crossDomain: true,
-  success: callback
-  });
-};
+  success: callback,
+  error: function(xhr){
+    // alert("An error occured: " + xhr.status + " " + xhr.statusText);
+  }
+});
+}
