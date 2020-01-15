@@ -12,6 +12,7 @@ const getResource = () => {
     (res) => {
       movieData = res;
       loadCurrentMovie();
+      $('.iconfont').css('display', 'none');
     }
   );
 };

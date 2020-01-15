@@ -36,12 +36,8 @@ const getResource = (singleMovieData) => {
     (res) => {
       loadSimilarMovie(res, singleMovieData);
       movieData = res;
-      $('.btn').click((event) => {
-        searchMovie();
-        event.preventDefault();
+      $('.iconfont').css('display', 'none');
       });
-    }
-  );
 };
 
 const loadSpecificMovie = (res) => {
@@ -138,5 +134,10 @@ const movieCardContents = (listContent) => {
   });
   return list;
 };
+
+$('.btn').click((event) => {
+  searchMovie();
+  event.preventDefault();
+});
 
 getSpecificMovieResource();

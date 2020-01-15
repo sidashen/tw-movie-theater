@@ -146,3 +146,10 @@
   display: flex;
   justify-content: space-between;
 }
+
+.icon-jiazai {
+  position: relative;
+  top: 22px;
+  left: 46.7%;
+  font-size: 64px!important;
+}
