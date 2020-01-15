@@ -98,6 +98,10 @@
   height: 750px;
 }
 
+.card-title {
+  text-align: center;
+}
+
 .card-img-top {
   height: 400px;
   cursor: pointer;
@@ -106,6 +110,10 @@
 .movie-description {
   position: absolute;
   bottom: 20px;
+  left: 108px;
+  background-color: #2c71c0;
+  color: white;
+  border-radius: 5px;
 }
 
 .search-movie-lists {

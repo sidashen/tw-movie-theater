@@ -63,6 +63,16 @@
 
 .card-body {
   display: inline-block;
+  width: 60%;
+}
+
+.movie-description {
+  padding: 5px;
+  width: fit-content;
+  height: fit-content;
+  background-color: #2c71c0;
+  color: white;
+  border-radius: 5px;
 }
 
 .summary-head {
@@ -143,6 +153,7 @@ h5 {
     left: 25%;
     padding: 5px;
     width: fit-content;
+  height: fit-content;
     background-color: #2c71c0;
     color: white;
     border-radius: 5px;
