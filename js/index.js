@@ -102,55 +102,58 @@ const initialPaginationParams = () => {
   if ((singlePageMovies.length % 6) !== 0) {
     totalPage++;
   }
-
   if (current === 0) {
-    $('.previous-page').attr('disabled', true);
-    $('.previous-page').html('没有上一页了');
-    $('.previous-page').css('background-color','grey');
-    $('.next-page').removeAttr('disabled');
-    $('.next-page').html('下一页');
-    $('.next-page').css('background-color','#2c71c0');
+    previousPageDisabled();
+    nextPageActive();
   }
-  ;
-
   if (current === totalPage - 1) {
-    $('.next-page').attr('disabled', true);
-    $('.next-page').html('没有下一页了');
-    $('.next-page').css('background-color','grey');
+    nextPageDisabled();
   }
-  ;
+};
+
+const nextPageActive = () => {
+  $('.next-page').removeAttr('disabled');
+  $('.next-page').html('下一页');
+  $('.next-page').css('background-color', '#2c71c0');
+};
+
+const nextPageDisabled = () => {
+  $('.next-page').attr('disabled', true);
+  $('.next-page').html('没有下一页了');
+  $('.next-page').css('background-color', 'grey');
+};
+
+const previousPageActive = () => {
+  $('.previous-page').removeAttr('disabled');
+  $('.previous-page').html('上一页');
+  $('.previous-page').css('background-color', ' #2c71c0');
+};
+
+const previousPageDisabled = () => {
+  $('.previous-page').attr('disabled', true);
+  $('.previous-page').html('没有上一页了');
+  $('.previous-page').css('background-color', 'grey');
 };
 
 const nextPage = () => {
   current ++;
-
   currentMovies = singlePageMovies.slice(current * 6, (current + 1) * 6);
   $('.movie-show-lists').html(movieCardContents(currentMovies));
-  $('.previous-page').removeAttr('disabled');
-  $('.previous-page').html('上一页');
-  $('.previous-page').css('background-color',' #2c71c0');
+  previousPageActive();
 
-  console.log(current);
-  console.log(totalPage);
   if (current === totalPage - 1) {
-    $('.next-page').attr('disabled', true);
-    $('.next-page').html('没有下一页了');
-    $('.next-page').css('background-color','grey');
-  };
+    nextPageDisabled();
+  }
 };
 
 const previousPage = () => {
   current --;
   currentMovies = singlePageMovies.slice(current * 6, (current + 1) * 6);
   $('.movie-show-lists').html(movieCardContents(currentMovies));
-  $('.next-page').removeAttr('disabled');
-  $('.next-page').html('下一页');
-  $('.next-page').css('background-color',' #2c71c0');
+  nextPageActive();
 
   if (current === 0) {
-    $('.previous-page').attr('disabled', true);
-    $('.previous-page').html('没有上一页了');
-    $('.previous-page').css('background-color','grey');
+    previousPageDisabled();
   }
 };
 
