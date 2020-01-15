@@ -45,23 +45,19 @@ const searchMovie = () => {
 
 const loadMovieClass = (event) => {
   singlePageMovies = movieData.subjects.filter(item => {
-    if ('story' === event.target.className) {
-      return item.genres.includes('剧情');
-    } else if ('action' === event.target.className) {
-      return item.genres.includes('动作');
-    } else if ('love' === event.target.className) {
-      return item.genres.includes('爱情');
-    } else if ('cartoon' === event.target.className) {
-      return item.genres.includes('动画');
-    } else if ('gay' === event.target.className) {
-      return item.genres.includes('同性');
-    } else if ('fantasy' === event.target.className) {
-      return item.genres.includes('奇幻');
-    } else if ('scientific' === event.target.className) {
-      return item.genres.includes('科幻');
-    } else if ('war' === event.target.className) {
-      return item.genres.includes('战争');
-    }
+  const type = event.target.className;
+  const typeMap = {
+    story: '剧情',
+    action: '动作',
+    love: '爱情',
+    cartoon: '动画',
+    gay: '同性',
+    fantasy: '奇幻',
+    scientific: '科幻',
+    war: '战争'
+  };
+
+  return item.genres.includes(typeMap[type]);
   });
 
   currentMovies = singlePageMovies.slice(0, 6);
