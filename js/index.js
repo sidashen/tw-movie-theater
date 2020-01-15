@@ -1,5 +1,5 @@
 let movieData;
-let current = 0;
+let current;
 let totalPage;
 let singlePageMovies;
 let currentMovies;
@@ -21,7 +21,7 @@ const loadCurrentMovie = () => {
   let currentMovies = singlePageMovies.slice(0, 6);
 
   $('.movie-show-lists').html(movieCardContents(currentMovies));
-  initialParams();
+  initialPaginationParams();
 };
 
 const searchMovie = () => {
@@ -41,28 +41,6 @@ const searchMovie = () => {
   }
   $('input')[0].value = '';
 };
-
-function initialParams() {
-  current = 0;
-  totalPage = Math.floor(singlePageMovies.length / 6);
-  if ((singlePageMovies.length % 6) !== 0) {
-    totalPage++;
-  }
-
-  if (current === 0) {
-    $('.previous-page').attr('disabled', true);
-    $('.previous-page').html('没有上一页了');
-    $('.next-page').removeAttr('disabled');
-    $('.next-page').html('下一页');
-  }
-  ;
-
-  if (current === totalPage - 1) {
-    $('.next-page').attr('disabled', true);
-    $('.next-page').html('没有下一页了');
-  }
-  ;
-}
 
 const loadMovieClass = (event) => {
   singlePageMovies = movieData.subjects.filter(item => {
@@ -86,7 +64,7 @@ const loadMovieClass = (event) => {
   });
 
   currentMovies = singlePageMovies.slice(0, 6);
-  initialParams();
+  initialPaginationParams();
 
   $('.movie-show-lists').html(currentMovies.length ?
     movieCardContents(currentMovies) : `<span class="empty-result">没有该类型的电影</span>`
@@ -116,7 +94,29 @@ const movieCardContents = (listContent) => {
       </div>`;
   });
   return list;
-}
+};
+
+const initialPaginationParams = () => {
+  current = 0;
+  totalPage = Math.floor(singlePageMovies.length / 6);
+  if ((singlePageMovies.length % 6) !== 0) {
+    totalPage++;
+  }
+
+  if (current === 0) {
+    $('.previous-page').attr('disabled', true);
+    $('.previous-page').html('没有上一页了');
+    $('.next-page').removeAttr('disabled');
+    $('.next-page').html('下一页');
+  }
+  ;
+
+  if (current === totalPage - 1) {
+    $('.next-page').attr('disabled', true);
+    $('.next-page').html('没有下一页了');
+  }
+  ;
+};
 
 const nextPage = () => {
   current ++;
@@ -132,7 +132,7 @@ const nextPage = () => {
     $('.next-page').attr('disabled', true);
     $('.next-page').html('没有下一页了');
   };
-}
+};
 
 const previousPage = () => {
   current --;
@@ -145,7 +145,7 @@ const previousPage = () => {
     $('.previous-page').attr('disabled', true);
     $('.previous-page').html('没有上一页了');
   }
-}
+};
 
 $('body').click(event => {
   let {classList} = event.target;
