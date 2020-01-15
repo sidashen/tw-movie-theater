@@ -6,7 +6,7 @@ let currentMovies;
 
 const getResource = () => {
   myAjax(
-    'https://api.douban.com/v2/movie/top250?start=0&count=250&apikey=0df993c66c0c636e29ecbb5344252a4a',
+    'https://api.douban.com/v2/movie/top250?start=0&count=10&apikey=0df993c66c0c636e29ecbb5344252a4a',
     'get', 
     {},
     (res) => {
@@ -89,7 +89,7 @@ const movieCardContents = (listContent) => {
       item => item.name
     )}</p>
         <p class="card-text">类别: ${item.genres}</p>
-        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description">查看详情</button></a>
+        <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description btn-style">查看详情</button></a>
         </div>
       </div>`;
   });
@@ -106,14 +106,17 @@ const initialPaginationParams = () => {
   if (current === 0) {
     $('.previous-page').attr('disabled', true);
     $('.previous-page').html('没有上一页了');
+    $('.previous-page').css('background-color','grey');
     $('.next-page').removeAttr('disabled');
     $('.next-page').html('下一页');
+    $('.next-page').css('background-color','#2c71c0');
   }
   ;
 
   if (current === totalPage - 1) {
     $('.next-page').attr('disabled', true);
     $('.next-page').html('没有下一页了');
+    $('.next-page').css('background-color','grey');
   }
   ;
 };
@@ -125,12 +128,14 @@ const nextPage = () => {
   $('.movie-show-lists').html(movieCardContents(currentMovies));
   $('.previous-page').removeAttr('disabled');
   $('.previous-page').html('上一页');
+  $('.previous-page').css('background-color',' #2c71c0');
 
   console.log(current);
   console.log(totalPage);
   if (current === totalPage - 1) {
     $('.next-page').attr('disabled', true);
     $('.next-page').html('没有下一页了');
+    $('.next-page').css('background-color','grey');
   };
 };
 
@@ -140,10 +145,12 @@ const previousPage = () => {
   $('.movie-show-lists').html(movieCardContents(currentMovies));
   $('.next-page').removeAttr('disabled');
   $('.next-page').html('下一页');
+  $('.next-page').css('background-color',' #2c71c0');
 
   if (current === 0) {
     $('.previous-page').attr('disabled', true);
     $('.previous-page').html('没有上一页了');
+    $('.previous-page').css('background-color','grey');
   }
 };
 

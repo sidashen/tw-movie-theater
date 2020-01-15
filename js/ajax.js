@@ -7,7 +7,6 @@ function myAjax(url, type, data, callback) {
   crossDomain: true,
   success: callback,
   error: function(xhr){
-    // alert("An error occured: " + xhr.status + " " + xhr.statusText);
   }
 });
 }

@@ -107,13 +107,17 @@
   cursor: pointer;
 }
 
+.btn-style {
+  background-color: #2c71c0;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
 .movie-description {
   position: absolute;
   bottom: 20px;
   left: 108px;
-  background-color: #2c71c0;
-  color: white;
-  border-radius: 5px;
 }
 
 .search-movie-lists {
@@ -131,5 +135,11 @@
 }
 
 .pagination {
+  position: relative;
+  margin: 30px 0 30px 30px;
+}
+
+.next-page {
   position: absolute;
+  right: 30px;
 }
