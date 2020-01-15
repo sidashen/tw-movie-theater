@@ -167,6 +167,7 @@ $('body').click(event => {
 
   if (classList.contains('btn')) {
     searchMovie();
+    event.preventDefault();
   }
   if (classList.contains('story')) {
     loadMovieClass(event);
