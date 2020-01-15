@@ -19,18 +19,9 @@ const getResource = () => {
 const loadCurrentMovie = () => {
   singlePageMovies = movieData.subjects;
   let currentMovies = singlePageMovies.slice(0, 6);
-  totalPage = Math.floor(singlePageMovies.length / 6);
-  console.log(totalPage);
-  if ((movieData.subjects.length % 6) !== 0) {
-    totalPage ++;
-  }
 
   $('.movie-show-lists').html(movieCardContents(currentMovies));
-
-  if (current === 0) {
-    $('.previous-page').attr('disabled', true);
-    $('.previous-page').html('没有上一页了');
-  }
+  initialParams();
 };
 
 const searchMovie = () => {
@@ -50,6 +41,28 @@ const searchMovie = () => {
   }
   $('input')[0].value = '';
 };
+
+function initialParams() {
+  current = 0;
+  totalPage = Math.floor(singlePageMovies.length / 6);
+  if ((singlePageMovies.length % 6) !== 0) {
+    totalPage++;
+  }
+
+  if (current === 0) {
+    $('.previous-page').attr('disabled', true);
+    $('.previous-page').html('没有上一页了');
+    $('.next-page').removeAttr('disabled');
+    $('.next-page').html('下一页');
+  }
+  ;
+
+  if (current === totalPage - 1) {
+    $('.next-page').attr('disabled', true);
+    $('.next-page').html('没有下一页了');
+  }
+  ;
+}
 
 const loadMovieClass = (event) => {
   singlePageMovies = movieData.subjects.filter(item => {
@@ -73,23 +86,7 @@ const loadMovieClass = (event) => {
   });
 
   currentMovies = singlePageMovies.slice(0, 6);
-  current = 0;
-  totalPage = Math.floor(singlePageMovies.length / 6);
-  if ((singlePageMovies.length % 6) !== 0) {
-    totalPage ++;
-  }
-
-  if (current === 0) {
-    $('.previous-page').attr('disabled', true);
-    $('.previous-page').html('没有上一页了');
-    $('.next-page').removeAttr('disabled');
-    $('.next-page').html('下一页');
-  };
-
-  if (current === totalPage - 1) {
-    $('.next-page').attr('disabled', true);
-    $('.next-page').html('没有下一页了');
-  };
+  initialParams();
 
   $('.movie-show-lists').html(currentMovies.length ?
     movieCardContents(currentMovies) : `<span class="empty-result">没有该类型的电影</span>`
