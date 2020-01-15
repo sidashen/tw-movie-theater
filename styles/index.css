@@ -80,6 +80,12 @@
   color: #2c71c0;
 }
 
+.group-name > li:hover {
+  color: #fff;
+  background-color: #2c71c0;
+  border-color: #2c71c0;
+}
+
 .movie-show-lists {
   position: relative;
   margin: 14px 0;
