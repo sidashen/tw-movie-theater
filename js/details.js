@@ -114,7 +114,7 @@ const movieCardContents = (listContent) => {
   let list = '';
   listContent.forEach(item => {
     list += `<div class="movie-card">
-        <a href="./pages/details.html?id=${item.id}" target="_blank">
+        <a href="../pages/details.html?id=${item.id}" target="_blank">
         <img class="card-img-top" src=${item.images.medium} alt="Card image cap">
         </a>
         <div class="search-card-body">
@@ -128,7 +128,7 @@ const movieCardContents = (listContent) => {
         item => item.name
       )}</p>
           <p class="card-text">类别: ${item.genres}</p>
-          <a href="./pages/details.html?id=${item.id}" target="_blank"><button class="movie-description btn-style">查看详情</button></a>
+          <a href="../pages/details.html?id=${item.id}" target="_blank"><button class="movie-description btn-style">查看详情</button></a>
         </div>
       </div>`;
   });
