@@ -1,6 +1,5 @@
 const url = location.search;
 const id = url.replace(/[^0-9]/ig,"");
-let singleMovieData;
 let movieData;
 
 const getSpecificMovieResource = () => {
@@ -9,10 +8,9 @@ const getSpecificMovieResource = () => {
     'get',
     {},
     (res) => {
-      singleMovieData = res;
       loadSpecificMovie(res);
       getCommentsResource();
-      getResource(singleMovieData);
+      getResource(res);
     }
   );
 };
@@ -36,8 +34,8 @@ const getResource = (singleMovieData) => {
     (res) => {
       loadSimilarMovie(res, singleMovieData);
       movieData = res;
-      $('.iconfont').css('display', 'none');
-      });
+      $('.loading').css('display', 'none');
+    });
 };
 
 const loadSpecificMovie = (res) => {
@@ -136,8 +134,8 @@ const movieCardContents = (listContent) => {
 };
 
 $('.btn').click((event) => {
-  searchMovie();
   event.preventDefault();
+  searchMovie();
 });
 
 getSpecificMovieResource();

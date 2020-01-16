@@ -181,9 +181,9 @@ h5 {
   text-align: center;
 }
 
-.icon-jiazai {
+.loading-img {
   position: relative;
-  /*top: 22px;*/
-  left: 46.7%;
-  font-size: 64px!important;
+  left: 47%;
+  width: 4rem;
+  height: 4rem;
 }

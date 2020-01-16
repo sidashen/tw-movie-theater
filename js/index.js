@@ -12,7 +12,7 @@ const getResource = () => {
     (res) => {
       movieData = res;
       loadCurrentMovie();
-      $('.iconfont').css('display', 'none');
+      $('.loading').css('display', 'none');
     }
   );
 };
@@ -163,8 +163,8 @@ $('body').click(event => {
   let {classList} = event.target;
 
   if (classList.contains('btn')) {
-    searchMovie();
     event.preventDefault();
+    searchMovie();
   }
   if (classList.contains('story')) {
     loadMovieClass(event);
